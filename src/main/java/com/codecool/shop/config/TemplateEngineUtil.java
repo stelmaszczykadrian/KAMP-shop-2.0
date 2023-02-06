@@ -1,13 +1,17 @@
 package com.codecool.shop.config;
 
-import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebListener;
-import org.thymeleaf.TemplateEngine;
+//import javax.servlet.ServletContext;
+//import javax.servlet.annotation.WebListener;
+//import org.thymeleaf.TemplateEngine;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 /**
  * Store and retrieves Thymeleaf TemplateEngine into the application servlet context.
  */
-@WebListener
+@RestController
 public class TemplateEngineUtil {
 
     private static final String TEMPLATE_ENGINE_ATTR = "com.thymeleafexamples.thymeleaf3.TemplateEngineInstance";
