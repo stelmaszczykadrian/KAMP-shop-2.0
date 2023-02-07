@@ -17,7 +17,7 @@ import java.util.Map;
 public class ProductController {
 
     @GetMapping ( "/")
-        public String dupa(Model model) {
+        public String index(Model model) {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
