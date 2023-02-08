@@ -31,7 +31,8 @@
 <body>
 
 <div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+    <div onclick="window.location.href = '/'"><img src="/static/img/kampshop.jpg" name="kampshop_logo"></div>
+<!--    <h1>Codecool Shop</h1>-->
 </div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
@@ -42,17 +43,16 @@
         <h5>Categories</h5>
             <div onclick="window.location.href='http://localhost:8888/category/1'">Tablet</div>
             <div onclick="window.location.href='http://localhost:8888/category/2'">Television</div>
+            <div onclick="window.location.href='http://localhost:8888/category/3'">Mobile Phones</div>
         <h5 class="supplier">Suppliers</h5>
             <div onclick="window.location.href='http://localhost:8888/supplier/1'">Amazon</div>
             <div onclick="window.location.href='http://localhost:8888/supplier/2'">Lenovo</div>
             <div onclick="window.location.href='http://localhost:8888/supplier/3'">Samsung</div>
+            <div onclick="window.location.href='http://localhost:8888/supplier/4'">Apple</div>
     </div>
 
     <div class="main-div">
         <div class="container">
-            <div class="card">
-                <strong th:text="${category.name}">Category Title</strong>
-            </div>
             <div id="products" class="row">
                 <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
                     <div class="card">
