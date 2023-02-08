@@ -31,7 +31,8 @@
 <body>
 
 <div class="jumbotron text-center">
-    <button onclick="window.location.href = '/';"><h1>Codecool Shop</h1></button>
+    <div onclick="window.location.href = '/'"><img src="/static/img/kampshop.jpg" name="kampshop_logo"></div>
+<!--    <button onclick="window.location.href = '/';"><h1>Codecool Shop</h1></button>-->
 </div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
@@ -42,10 +43,12 @@
         <h5>Categories</h5>
             <div onclick="window.location.href='http://localhost:8888/category/1'">Tablet</div>
             <div onclick="window.location.href='http://localhost:8888/category/2'">Television</div>
+            <div onclick="window.location.href='http://localhost:8888/category/3'">Mobile Phones</div>
         <h5 class="supplier">Suppliers</h5>
             <div onclick="window.location.href='http://localhost:8888/supplier/1'">Amazon</div>
             <div onclick="window.location.href='http://localhost:8888/supplier/2'">Lenovo</div>
             <div onclick="window.location.href='http://localhost:8888/supplier/3'">Samsung</div>
+            <div onclick="window.location.href='http://localhost:8888/supplier/4'">Apple</div>
     </div>
 
     <div class="main-div">
