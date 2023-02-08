@@ -11,6 +11,7 @@ import com.codecool.shop.model.CartItem;
 import com.codecool.shop.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,9 +24,12 @@ public class CartController {
         return "cart/index";
     }
 
-    @RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
-    public String buy(@PathVariable("id") int id, HttpSession session) {
+    @GetMapping("/buy/{id}")
+    public String buy(@PathVariable("id") int id,  HttpSession session){
+    /*@RequestMapping(value = "buy?{id}", method = RequestMethod.GET)
+    public String buy(@PathVariable("id") int id, HttpSession session) {*/
 
+        System.out.println("ok");
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
