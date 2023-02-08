@@ -10,12 +10,6 @@ import java.util.Map;
 @SpringBootApplication
 public class ServingWebContentApplication {
     public static void main(String[] args) {
-
-        Map<String, Integer> cart = new HashMap<>();
-        cart.put("product", 3);
-
-        JsonDao jsonDao = new JsonDao();
-        jsonDao.save(cart);
         SpringApplication app = new SpringApplication(ServingWebContentApplication.class);
         app.setDefaultProperties(Collections
                 .singletonMap("server.port", "8888"));
