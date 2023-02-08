@@ -1,37 +1,43 @@
 package com.codecool.shop.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Cart {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
     private int totalPrice;
+    private Map<Product, Integer> cart;
 
-    private int itemsNumber;
-
-    // Set czy mapa?
-    private Set<CartItem> cartItems = new HashSet<>();
-
-    public void addItemToCart(int quantity){
+    public Cart(){
+        this.cart = new HashMap<>();
     }
 
-    public void deleteItemFromCart(int quantity){
+    public void addProductToCart(Product product) {
+        if (cart.containsKey(product)) {
+            cart.replace(product, cart.get(product) + 1);
+        } else {
+            cart.put(product, 1);
+        }
     }
+
+    public void deleteProductFromCart(Product product) {
+            if(cart.containsKey(product)) {
+                if(cart.get(product) > 1)
+                    cart.replace(product, cart.get(product) - 1);
+
+                else if (cart.get(product) == 1) cart.remove(product);
+            }
+        }
+
 
     public void checkout(){
     }
+    public Map getCartItems(){
+        return cart;
+    }
 
-    public Set<CartItem> getCartItems(){
-        return cartItems;
+    public void setCartItems(Map<Product, Integer> cart) {
+        this.cart = cart;
     }
 
 }

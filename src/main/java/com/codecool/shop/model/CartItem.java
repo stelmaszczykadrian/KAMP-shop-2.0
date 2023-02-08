@@ -1,25 +1,14 @@
 package com.codecool.shop.model;
 
-//import javax.persistence.ManyToAny;
-
 public class CartItem {
 
-    private int id;
+    private Product product;
     private int quantity;
 
-    //@ManyToAny(fetch = FetchType.EAGER)
-    private Product product;
-
-   /* public CartItem() {
-        this.id = id;
-        this.quantity = quantity;
+    public CartItem(Product product, int quantity){
         this.product = product;
-    } */
-
-    public int getId() {
-        return id;
+        this.quantity = quantity;
     }
-
     public int getQuantity(){
         return quantity;
     }
@@ -28,7 +17,6 @@ public class CartItem {
         return product;
     }
 
-    // co z tym nullem ?
     public Product getProductById(int id) {
         if(product.getId() == id)
             return product;
@@ -42,4 +30,7 @@ public class CartItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+
+
 }
