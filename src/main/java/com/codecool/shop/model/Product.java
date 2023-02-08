@@ -59,7 +59,9 @@ public class Product extends BaseModel {
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
         this.supplier.addProduct(this);
+
     }
+
 
     @Override
     public String toString() {

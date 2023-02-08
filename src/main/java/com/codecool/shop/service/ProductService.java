@@ -47,5 +47,8 @@ public class ProductService{
         return productDao.getAll();
     }
 
+    public Product getProductById(int id){
+        return productDao.find(id);
+    }
 
 }
