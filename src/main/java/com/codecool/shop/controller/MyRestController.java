@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 class MyRestController {
-
         @GetMapping(path = "/carts")
         public JSONObject sayHello()
         {
-
             return new JsonDao().readJson();
         }
     }

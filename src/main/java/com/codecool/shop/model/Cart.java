@@ -1,10 +1,6 @@
 package com.codecool.shop.model;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Cart {
