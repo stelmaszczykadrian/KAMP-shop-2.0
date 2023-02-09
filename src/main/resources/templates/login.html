@@ -26,6 +26,8 @@
     <!-- End of Bootstrap components -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+
 </head>
 
 <body>
@@ -40,16 +42,16 @@
                             You have been logged out.
                         </div>
 
-                        <h3 class="mb-5">Sign in</h3>
+                        <h3 class="mb-5 border-success">Sign in</h3>
 
-                        <div class="form-outline mb-4">
-                            <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="username"/>
+                        <div class="form-outline-g mb-4">
+                            <input type="text" id="typeEmailX-2" class="form-control form-control-lg border-success outline-color-success" name="username"/>
                             <label class="form-label" for="typeEmailX-2">Username</label>
                         </div>
 
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password"/>
+                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg border-success outline-color-success" name="password"/>
                             <label class="form-label" for="typePasswordX-2">Password</label>
                         </div>
                         <div th:if="${param.error}">
@@ -62,7 +64,7 @@
                             <label class="form-check-label" for="form1Example3"> Remember password </label>
                         </div>
 
-                        <button class="btn btn-primary btn-lg btn-block" value="Sign In" type="submit">Login</button>
+                        <button class="btn btn-success btn-lg btn-block" value="Sign In" type="submit">Login</button>
 
                         <hr class="my-4">
 
