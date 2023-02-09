@@ -34,10 +34,9 @@
     <div id="body-payment">
         <div class="container">
             <div class="main-content">
-        <!--        <p class="text">Price:</p>-->
             </div>
             <div class="centre-content">
-                <h1 class="price">Here put price!<span>/-</span></h1>
+                <h1 class="price" th:text="'Total price: '+ ${totalPrice} + '$'"><span></span></h1>
             </div>
             <div class="paypal-payment">
                 <button onclick="window.location.href = 'https://www.paypal.com/pl/home';">Pay with PayPal</button>
