@@ -10,17 +10,19 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig{
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/home").permitAll()
-                        .requestMatchers("/api/carts").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
+                .authorizeRequests()
+                    .requestMatchers("/home").permitAll()
+                    .requestMatchers("/api/carts").hasRole("ADMIN")
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
