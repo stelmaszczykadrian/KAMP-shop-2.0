@@ -58,18 +58,10 @@ public class CartController {
 
 
     @GetMapping( "/cart")
-    public String cart(HttpSession session, Model model, int id){
+    public String cart(HttpSession session, Model model){
         Cart cart = (Cart) session.getAttribute("cart");
 
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-
-        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
-
-        model.addAttribute("product", productService.getProductById(id));
-
-
+        model.addAttribute("cart", cart.getCartItems());
 
         System.out.println(cart.getCartItems());
         return "cart";
