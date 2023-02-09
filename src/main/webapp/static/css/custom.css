@@ -13,6 +13,13 @@
 {
     margin-top: 10px;
 }
+
+.form-outline-g {
+    outline-color: green;
+    border-color: green;
+    margin: 5px;
+}
+
 .item.list-group-item
 {
     float: none;
