@@ -93,13 +93,16 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <h6>Total price: </h6>
+                    <h6 th:text="${totalPrice}+' USD'"></h6>
+                </div>
             </div>
             <div class="card">
                 <div class="card-body">
                     <button type="button" class="btn btn-success btn-block btn-lg" onclick="window.location.href='http://localhost:8888/payment'">Proceed to Pay</button>
                 </div>
             </div>
-<!--        po usunięciu wszystkich rzeczy z koszyka powrót na stronę główną-->
         </div>
     </div>
 </section>

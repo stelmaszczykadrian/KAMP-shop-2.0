@@ -8,11 +8,15 @@ import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.CartItem;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class CartController {
@@ -62,8 +66,8 @@ public class CartController {
         Cart cart = (Cart) session.getAttribute("cart");
 
         model.addAttribute("cart", cart.getCartItems());
+        model.addAttribute("totalPrice", cart.getTotalPrice());
 
-        System.out.println(cart.getCartItems());
         return "cart";
     }
 
