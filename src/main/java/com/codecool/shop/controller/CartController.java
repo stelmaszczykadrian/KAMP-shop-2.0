@@ -20,7 +20,7 @@ public class CartController {
     @RequestMapping(value="buy/{id}", method = RequestMethod.GET)
     public String buy(@PathVariable("id") int id,  HttpSession session){
 
-        System.out.println("ok");
+//        System.out.println("ok");
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
@@ -41,7 +41,7 @@ public class CartController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.POST)
     public String remove(@PathVariable("id") int id, HttpSession session) {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
@@ -54,6 +54,25 @@ public class CartController {
         cart.deleteProductFromCart(productService.getProductById(id));
         session.setAttribute("cart", cart);
         return "redirect:/cart/index";
+    }
+
+
+    @GetMapping( "/cart")
+    public String cart(HttpSession session, Model model, int id){
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+
+        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
+
+        model.addAttribute("product", productService.getProductById(id));
+
+
+
+        System.out.println(cart.getCartItems());
+        return "cart";
     }
 
 }
