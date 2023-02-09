@@ -23,6 +23,12 @@ public class CartItem {
         return null;
     }
 
+    public double getPrice() {
+        int spaceIndex = product.getPrice().indexOf(" ");
+        String price = product.getPrice().substring(0, spaceIndex);
+        return Double.parseDouble(price);
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

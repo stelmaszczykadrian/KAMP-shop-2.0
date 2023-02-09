@@ -1,5 +1,7 @@
 package com.codecool.shop.model;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,18 @@ public class Cart {
                 else if (cart.get(product) == 1) cart.remove(product);
             }
         }
+
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+        for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
+            Product product = entry.getKey();
+            Integer quantity = entry.getValue();
+
+            CartItem cartItem = new CartItem(product, quantity);
+            totalPrice += cartItem.getPrice() * quantity;
+        }
+        return totalPrice;
+    }
 
     public void checkout(){
     }
