@@ -41,7 +41,7 @@ public class CartController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "remove/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable("id") int id, HttpSession session) {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
@@ -53,7 +53,7 @@ public class CartController {
         Cart cart = (Cart) session.getAttribute("cart");
         cart.deleteProductFromCart(productService.getProductById(id));
         session.setAttribute("cart", cart);
-        return "redirect:/cart/index";
+        return "redirect:/cart";
     }
 
 
