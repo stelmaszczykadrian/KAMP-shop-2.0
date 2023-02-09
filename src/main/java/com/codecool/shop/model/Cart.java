@@ -1,12 +1,14 @@
 package com.codecool.shop.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Cart {
 
     private int totalPrice;
-    private Map<Product, Integer> cart;
+    private HashMap<Product, Integer> cart;
 
     public Cart(){
         this.cart = new HashMap<>();
@@ -29,14 +31,13 @@ public class Cart {
             }
         }
 
-
     public void checkout(){
     }
-    public Map getCartItems(){
+    public HashMap<Product, Integer> getCartItems(){
         return cart;
     }
 
-    public void setCartItems(Map<Product, Integer> cart) {
+    public void setCartItems(HashMap<Product, Integer> cart) {
         this.cart = cart;
     }
 
