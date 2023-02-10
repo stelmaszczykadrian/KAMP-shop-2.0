@@ -56,7 +56,7 @@
     <div class="main-div">
         <div class="container">
             <div id="products" class="row">
-                <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+                <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${supplier.products}">
                     <div class="card">
                         <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
                         <div class="card-header">
@@ -78,7 +78,7 @@
 </div>
 </div>
 
-<!--<div th:replace="footer.html :: copy"></div>-->
+<div th:replace="footer.html :: copy"></div>
 
 </body>
 </html>

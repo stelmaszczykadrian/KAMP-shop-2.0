@@ -12,7 +12,6 @@ public class PaymentController {
     public String payment(Model model, HttpSession session){
         Cart cart = (Cart) session.getAttribute("cart");
         model.addAttribute("totalPrice", cart.getTotalPrice());
-
         return "payment";
     }
 

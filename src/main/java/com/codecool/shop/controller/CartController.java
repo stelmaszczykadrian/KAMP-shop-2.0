@@ -26,16 +26,10 @@ public class CartController {
         ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
 
         if (session.getAttribute("cart") == null) {
-            Cart cart = new Cart();
-            cart.addProductToCart(productService.getProductById(id));
-            session.setAttribute("cart", cart);
-            System.out.println(cart.getCartItems());
-        } else {
-            Cart cart = (Cart) session.getAttribute("cart");
-            cart.addProductToCart(productService.getProductById(id));
-            session.setAttribute("cart", cart);
-            System.out.println(cart.getCartItems());
+            session.setAttribute("cart", new Cart());
         }
+        Cart cart = (Cart) session.getAttribute("cart");
+        cart.addProductToCart(productService.getProductById(id));
         return "redirect:/";
     }
 

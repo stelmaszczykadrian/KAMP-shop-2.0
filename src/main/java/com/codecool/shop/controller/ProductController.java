@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-
 public class ProductController {
     @GetMapping ( "/")
         public String index(Model model) {
@@ -50,7 +49,7 @@ public class ProductController {
 
         ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierDataStore);
 
-        model.addAttribute("products", productService.getSupplier(id).getProducts());
+        model.addAttribute("supplier", productService.getSupplier(id));
         return "supplier";
     }
 
