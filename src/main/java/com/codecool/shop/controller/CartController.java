@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class CartController {
 
-    @RequestMapping(value="buy/{id}", method = RequestMethod.GET)
-    public String buy(@PathVariable("id") int id,  HttpSession session){
+    @RequestMapping(value="buy/{id}", method = RequestMethod.POST)
+    public String buy(@PathVariable int id,  HttpSession session){
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -33,7 +33,7 @@ public class CartController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.POST)
     public String remove(@PathVariable("id") int id, HttpSession session) {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
