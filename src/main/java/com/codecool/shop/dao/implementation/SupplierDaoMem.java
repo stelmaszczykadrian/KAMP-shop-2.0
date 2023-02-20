@@ -2,10 +2,11 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
-
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class SupplierDaoMem implements SupplierDao {
 
     private List<Supplier> data = new ArrayList<>();
@@ -13,8 +14,6 @@ public class SupplierDaoMem implements SupplierDao {
 
     /* A private Constructor prevents any other class from instantiating.
      */
-    private SupplierDaoMem() {
-    }
 
     public static SupplierDaoMem getInstance() {
         if (instance == null) {
