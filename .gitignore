@@ -8,6 +8,9 @@
 target/
 *.iml
 
+# .properties
+src/main/resources/connection.properties
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
