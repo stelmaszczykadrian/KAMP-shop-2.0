@@ -1,4 +1,88 @@
 package com.codecool.shop.dao.implementation;
 
-public class ProductCategoryDaoJdbc {
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.model.ProductCategory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class ProductCategoryDaoJdbc implements ProductCategoryDao {
+    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
+
+    public ProductCategoryDaoJdbc(DataSource dataSource, JdbcTemplate jdbcTemplate) {
+        this.dataSource = dataSource;
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public void add(ProductCategory productCategory) {
+        var sql = """
+                INSERT INTO supplier(name, department, description)
+                VALUES (?, ?, ?);
+                 """;
+        jdbcTemplate.update(
+                sql, productCategory.getName(),
+                productCategory.getDepartment(),
+                productCategory.getDescription()
+        );
+    }
+
+    @Override
+    public ProductCategory find(int id) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT name, department, description FROM product_category WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()) {
+                return null;
+            }
+            String name = resultSet.getString("name");
+            String department = resultSet.getString("department");
+            String description = resultSet.getString("description");
+            return new ProductCategory(name, department, description);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding productCategory", e);
+        }
+    }
+
+    @Override
+    public void remove(int id) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "DELETE FROM product_category WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error removing product_category", e);
+        }
+    }
+
+    @Override
+    public List<ProductCategory> getAll() {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT id, name, department, description FROM product_category";
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<ProductCategory> productCategories = new ArrayList<>();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String department = resultSet.getString("department");
+                String description = resultSet.getString("description");
+                ProductCategory productCategory = new ProductCategory(name, department, description);
+                productCategory.setId(id);
+                productCategories.add(productCategory);
+            }
+            return productCategories;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting all productCategories", e);
+        }
+    }
 }
