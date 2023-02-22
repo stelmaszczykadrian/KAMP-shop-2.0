@@ -65,6 +65,12 @@ VALUES ('Tablet', 'Media', 'A tablet computer, commonly shortened to tablet, is 
        ('Mobile Phone', 'Media', 'Portable device for connecting to a telecommunications network in order to transmit and receive voice, video, or other data.')
 ;
 
+INSERT INTO supplier (name, description)
+VALUES ('Amazon', 'Digital content and services'),
+       ('Lenovo', 'Computers'),
+       ('Samsung', 'Television'),
+       ('Apple', 'Digital content and services');
+
 INSERT INTO users (name, email, password, enabled, authority)
 VALUES ('a', 'a', '$e0804$Gv0z3n4ujRCBES/uOnuH2OrDDv+MciIaiTkhR7osNMGO0jqqRfQ6Ffw8qSX34SJeKk19DlR7mvW3++2nZsWbCw==$M9zK0oLzuXvYKraIdGZYw3weoho0GRVtDQVS1FcDYQI=',1, 'ROLE_USER')
 ;
