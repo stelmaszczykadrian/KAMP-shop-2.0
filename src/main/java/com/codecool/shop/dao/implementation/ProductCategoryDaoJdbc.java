@@ -2,6 +2,7 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Primary
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
@@ -22,8 +24,11 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory productCategory) {
+        if (productCategory.getDescription() == null) {
+            productCategory.setDescription("");
+        }
         var sql = """
-                INSERT INTO supplier(name, department, description)
+                INSERT INTO product_category(name, department, description)
                 VALUES (?, ?, ?);
                  """;
         jdbcTemplate.update(
