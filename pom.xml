@@ -81,6 +81,16 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.signal</groupId>
+			<artifactId>argon2</artifactId>
+			<version>13.1</version>
+		</dependency>
 
 
 	</dependencies>
