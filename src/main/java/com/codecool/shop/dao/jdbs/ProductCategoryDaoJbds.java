@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ProductCategoryJbds implements ProductCategoryDao {
+public class ProductCategoryDaoJbds implements ProductCategoryDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ProductCategoryJbds(JdbcTemplate jdbcTemplate) {
+    public ProductCategoryDaoJbds(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
