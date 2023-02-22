@@ -1,4 +1,4 @@
-package com.codecool.shop.service;
+package com.codecool.shop.user;
 
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
