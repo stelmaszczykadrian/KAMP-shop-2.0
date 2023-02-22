@@ -9,7 +9,7 @@ target/
 *.iml
 
 # .properties
-src/main/resources/connection.properties
+src/main/resources/application.properties
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
