@@ -16,15 +16,15 @@ import java.math.BigDecimal;
 
 @Component
 public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
-    @Qualifier("productDaoMem")
+    @Qualifier("productDaoJdbc")
     @Autowired
     ProductDao productDataStore;
 
-    @Qualifier("productCategoryDaoMem")
+    @Qualifier("productCategoryDaoJdbc")
     @Autowired
     ProductCategoryDao productCategoryDataStore;
 
-    @Qualifier("supplierDaoMem")
+    @Qualifier("supplierDaoJdbc")
     @Autowired
     SupplierDao supplierDataStore;
 

@@ -25,6 +25,9 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public void add(Supplier supplier) {
+        if (supplier.getDescription() == null) {
+            supplier.setDescription("");
+        }
         var sql = """
                 INSERT INTO supplier(name, description)
                 VALUES (?, ?);
