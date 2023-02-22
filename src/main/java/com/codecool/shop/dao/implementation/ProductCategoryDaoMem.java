@@ -2,10 +2,11 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
-
+@Primary
 @Repository
 public class ProductCategoryDaoMem implements ProductCategoryDao {
 
