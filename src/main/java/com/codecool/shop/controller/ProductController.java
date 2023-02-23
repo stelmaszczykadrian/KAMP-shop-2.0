@@ -1,6 +1,6 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.DatabaseDao;
+import com.codecool.shop.dao.jdbc.UserDao;
 import com.codecool.shop.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping ( "/")
         public String index(Model model) {
-        DatabaseDao databaseDao = new DatabaseDao(jdbcTemplate);
+        UserDao databaseDao = new UserDao(jdbcTemplate);
         databaseDao.find("a");
         model.addAttribute("products", productService.getAllProducts());
         return "index";
