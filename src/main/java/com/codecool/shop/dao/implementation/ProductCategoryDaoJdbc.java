@@ -24,18 +24,18 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory productCategory) {
-        if (productCategory.getDescription() == null) {
-            productCategory.setDescription("");
-        }
-        var sql = """
-                INSERT INTO product_category(name, department, description)
-                VALUES (?, ?, ?);
-                 """;
-        jdbcTemplate.update(
-                sql, productCategory.getName(),
-                productCategory.getDepartment(),
-                productCategory.getDescription()
-        );
+//        if (productCategory.getDescription() == null) {
+//            productCategory.setDescription("");
+//        }
+//        var sql = """
+//                INSERT INTO product_category(name, department, description)
+//                VALUES (?, ?, ?);
+//                 """;
+//        jdbcTemplate.update(
+//                sql, productCategory.getName(),
+//                productCategory.getDepartment(),
+//                productCategory.getDescription()
+//        );
     }
 
     @Override
