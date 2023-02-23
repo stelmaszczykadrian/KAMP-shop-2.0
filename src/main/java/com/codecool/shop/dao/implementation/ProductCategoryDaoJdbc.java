@@ -36,6 +36,19 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 //                productCategory.getDepartment(),
 //                productCategory.getDescription()
 //        );
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "INSERT INTO product_category(name, department, description) VALUES (?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, productCategory.getName());
+            statement.setString(2, productCategory.getDepartment());
+            statement.setString(3, productCategory.getDescription());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            productCategory.setId(resultSet.getInt(1));
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while adding a new supplier",e);
+        }
     }
 
     @Override

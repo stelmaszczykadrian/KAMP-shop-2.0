@@ -37,18 +37,18 @@ public class SupplierDaoJdbc implements SupplierDao {
 //                supplier.getDescription()
 //        );
 //        ----------------------------------
-//        try (Connection conn = dataSource.getConnection()) {
-//            String sql = "INSERT INTO supplier (name, description) VALUES (?, ?)";
-//            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            statement.setString(1, supplier.getName());
-//            statement.setString(2, supplier.getDescription());
-//            statement.executeUpdate();
-//            ResultSet resultSet = statement.getGeneratedKeys();
-//            resultSet.next();
-//            supplier.setId(resultSet.getInt(1));
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error while adding a new supplier",e);
-//        }
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "INSERT INTO supplier (name, description) VALUES (?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, supplier.getName());
+            statement.setString(2, supplier.getDescription());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            supplier.setId(resultSet.getInt(1));
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while adding a new supplier",e);
+        }
     }
 
     @Override
