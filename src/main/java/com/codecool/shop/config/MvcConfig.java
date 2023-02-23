@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
         public void addViewControllers(ViewControllerRegistry registry) {
             registry.addViewController("/").setViewName("index");
             registry.addViewController("/login").setViewName("login");
+            registry.addViewController("/register").setViewName("register");
             registry.addViewController("/static/img/").setViewName("img");
         }
 
