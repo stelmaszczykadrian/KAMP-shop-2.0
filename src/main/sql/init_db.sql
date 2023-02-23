@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS public.authorities;
 CREATE TABLE public.product (
     id serial NOT NULL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
-    price FLOAT NOT NULL,
-    currency VARCHAR(200) NOT NULL,
-    description VARCHAR(200) NOT NULL,
+    price DECIMAL NOT NULL,
+    currency VARCHAR(200) DEFAULT 'USD',
+    description VARCHAR(200),
     product_category_id integer NOT NULL,
     supplier_id integer NOT NULL
 );
@@ -18,14 +18,13 @@ CREATE TABLE public.product_category (
     id serial NOT NULL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     department VARCHAR(200) NOT NULL,
-    description VARCHAR(200) NOT NULL
+    description VARCHAR(200)
 );
 
 CREATE TABLE public.supplier (
     id serial NOT NULL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
-    description VARCHAR(200) NOT NULL
-
+    description VARCHAR(200)
 );
 
 CREATE TABLE public.users (
@@ -79,7 +78,15 @@ VALUES ('a', 'a', '$e0804$Gv0z3n4ujRCBES/uOnuH2OrDDv+MciIaiTkhR7osNMGO0jqqRfQ6Ff
 
 
 
-ALTER TABLE ONLY public.product
-    ADD CONSTRAINT fk_product_product_category_id FOREIGN KEY (product_category_id) REFERENCES public.product_category(id),
-    ADD CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES public.supplier(id);
+-- ALTER TABLE ONLY public.product
+--     ADD CONSTRAINT fk_product_product_category_id FOREIGN KEY (product_category_id) REFERENCES public.product_category(id),
+--     ADD CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES public.supplier(id);
+--
+
+
+-- ALTER TABLE ONLY public.product
+--     ADD CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES public.supplier(id);
+--
+-- ALTER TABLE ONLY public.product
+--     ADD CONSTRAINT fk_product_product_category_id FOREIGN KEY (product_category_id) REFERENCES public.product_category(id);
 
