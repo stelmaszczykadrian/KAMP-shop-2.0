@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.config.annotation.web.servlet.configuration.WebMvcSecurityConfiguration;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,7 +24,6 @@ public class SecurityConfiguration{
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
-        System.out.println(new UserService().passwordEncode("a"));
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select name, password, enabled"
@@ -42,6 +42,7 @@ public class SecurityConfiguration{
                 .authorizeRequests()
                     .requestMatchers("/home").permitAll()
                     .requestMatchers("/api/carts").hasRole("ADMIN")
+                    .requestMatchers("/register").permitAll()
                     .anyRequest().hasRole("USER")
                     .and()
                 .formLogin((form) -> form
@@ -49,7 +50,7 @@ public class SecurityConfiguration{
                         .defaultSuccessUrl("/")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout(LogoutConfigurer::permitAll);
 
         return http.build();
     }
