@@ -1,4 +1,4 @@
-package com.codecool.shop.dao;
+package com.codecool.shop.dao.jdbc;
 
 import com.codecool.shop.user.User;
 import com.codecool.shop.user.UserRowMapper;
@@ -11,16 +11,16 @@ import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
-public class DatabaseDao {
+public class UserDao {
     private final JdbcTemplate jdbcTemplate;
-    public void insertSupplier(String name, String description){
-
-        var sql = """
-                INSERT INTO supplier (name, description)
-                VALUES (?, ?);
-                 """;
-        jdbcTemplate.update(sql, name, description);
-    }
+//    public void insertSupplier(String name, String description){
+//
+//        var sql = """
+//                INSERT INTO supplier (name, description)
+//                VALUES (?, ?);
+//                 """;
+//        jdbcTemplate.update(sql, name, description);
+//    }
     public Optional<User> find(String email){
         String sql = """
            SELECT id, name, email, password
@@ -38,4 +38,13 @@ public class DatabaseDao {
            """;
         return jdbcTemplate.query(sql,new UserRowMapper());
     }
+    public void create(User user){
+         System.out.println(user.getName());
+        String sql = """
+                INSERT INTO users (name, email, password, authority)
+                VALUES (?,?,?,?);
+                """;
+        jdbcTemplate.update(sql, user.getName(),user.getEmail(),user.getPassword(),user.getAuthority());
+    }
+
 }
