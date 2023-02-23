@@ -1,9 +1,8 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.jdbc;
 
-import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.model.ProductCategory;
 import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -13,48 +12,34 @@ import java.util.List;
 
 @Repository
 @Primary
-public class SupplierDaoJdbc implements SupplierDao {
-
+public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     private DataSource dataSource;
-    private JdbcTemplate jdbcTemplate;
 
-    public SupplierDaoJdbc(DataSource dataSource, JdbcTemplate jdbcTemplate) {
+    public ProductCategoryDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public void add(Supplier supplier) {
-//        if (supplier.getDescription() == null) {
-//            supplier.setDescription("");
-//        }
-//        var sql = """
-//                INSERT INTO supplier(name, description)
-//                VALUES (?, ?);
-//                 """;
-//        jdbcTemplate.update(
-//                sql, supplier.getName(),
-//                supplier.getDescription()
-//        );
-//        ----------------------------------
+    public void add(ProductCategory productCategory) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO supplier (name, description) VALUES (?, ?)";
+            String sql = "INSERT INTO product_category(name, department, description) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, supplier.getName());
-            statement.setString(2, supplier.getDescription());
+            statement.setString(1, productCategory.getName());
+            statement.setString(2, productCategory.getDepartment());
+            statement.setString(3, productCategory.getDescription());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
-            supplier.setId(resultSet.getInt(1));
+            productCategory.setId(resultSet.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException("Error while adding a new supplier",e);
         }
     }
 
     @Override
-    public Supplier find(int id) {
+    public ProductCategory find(int id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT name, description FROM supplier WHERE id = ?";
+            String sql = "SELECT name, department, description FROM product_category WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -62,43 +47,45 @@ public class SupplierDaoJdbc implements SupplierDao {
                 return null;
             }
             String name = resultSet.getString("name");
+            String department = resultSet.getString("department");
             String description = resultSet.getString("description");
-            return new Supplier(name, description);
+            return new ProductCategory(name, department, description);
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding supplier", e);
+            throw new RuntimeException("Error finding productCategory", e);
         }
     }
 
     @Override
     public void remove(int id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "DELETE FROM supplier WHERE id = ?";
+            String sql = "DELETE FROM product_category WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error removing supplier", e);
+            throw new RuntimeException("Error removing product_category", e);
         }
     }
 
     @Override
-    public List<Supplier> getAll() {
+    public List<ProductCategory> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT id, name, description FROM supplier";
+            String sql = "SELECT id, name, department, description FROM product_category";
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-            List<Supplier> suppliers = new ArrayList<>();
+            List<ProductCategory> productCategories = new ArrayList<>();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
+                String department = resultSet.getString("department");
                 String description = resultSet.getString("description");
-                Supplier supplier = new Supplier(name, description);
-                supplier.setId(id);
-                suppliers.add(supplier);
+                ProductCategory productCategory = new ProductCategory(name, department, description);
+                productCategory.setId(id);
+                productCategories.add(productCategory);
             }
-            return suppliers;
+            return productCategories;
         } catch (SQLException e) {
-            throw new RuntimeException("Error getting all supplier", e);
+            throw new RuntimeException("Error getting all productCategories", e);
         }
     }
 }
