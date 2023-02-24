@@ -26,10 +26,10 @@ public class SecurityConfiguration{
             throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select name, password, enabled"
+                .usersByUsernameQuery("select email, password, enabled"
                         +" from users"
-                        +" where name = ?")
-                .authoritiesByUsernameQuery("select name, authority from users where name = ?")
+                        +" where email = ?")
+                .authoritiesByUsernameQuery("select email, authority from users where email = ?")
                 .passwordEncoder(new SCryptPasswordEncoder(16384, 8, 4, 32, 64));
 
 
