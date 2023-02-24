@@ -13,14 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
-//    public void insertSupplier(String name, String description){
-//
-//        var sql = """
-//                INSERT INTO supplier (name, description)
-//                VALUES (?, ?);
-//                 """;
-//        jdbcTemplate.update(sql, name, description);
-//    }
+
     public Optional<User> find(String email){
         String sql = """
            SELECT id, name, email, password
