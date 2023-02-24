@@ -1,6 +1,6 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.jdbc.UserDao;
+import com.codecool.shop.dao.implementation.UserDao;
 import com.codecool.shop.model.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;

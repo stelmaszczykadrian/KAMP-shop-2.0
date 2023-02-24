@@ -1,6 +1,5 @@
-package com.codecool.shop.dao.jdbc;
+package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -12,10 +11,10 @@ import java.util.List;
 
 @Repository
 @Primary
-public class ProductCategoryDaoJdbc implements ProductCategoryDao {
+public class ProductCategoryDao implements com.codecool.shop.dao.ProductCategoryDao {
     private DataSource dataSource;
 
-    public ProductCategoryDaoJdbc(DataSource dataSource) {
+    public ProductCategoryDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

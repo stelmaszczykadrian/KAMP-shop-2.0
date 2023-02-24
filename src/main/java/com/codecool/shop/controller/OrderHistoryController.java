@@ -1,6 +1,6 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.jdbc.OrderDao;
+import com.codecool.shop.dao.implementation.OrderDao;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
