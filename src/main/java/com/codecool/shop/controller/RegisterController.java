@@ -1,8 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.jdbc.UserDao;
-import com.codecool.shop.user.User;
-import com.codecool.shop.user.UserService;
+import com.codecool.shop.model.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
