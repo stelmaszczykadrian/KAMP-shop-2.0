@@ -1,7 +1,6 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.jdbc.OrderDao;
-import com.codecool.shop.model.Cart;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +20,7 @@ public class OrderHistoryController {
     @GetMapping( "/orders")
     public String orders(Model model, HttpSession session, Principal principal){
         OrderDao orderDao = new OrderDao(jdbcTemplate);
-        List<Map<String, Object>> orders = orderDao.get_all_orders(principal);
+        List<Map<String, Object>> orders = orderDao.getAll(principal);
         model.addAttribute("orders", orders);
         return "orders";
     }
