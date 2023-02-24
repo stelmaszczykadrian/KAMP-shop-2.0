@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS public.product_category;
 DROP TABLE IF EXISTS public.supplier;
 DROP TABLE IF EXISTS public.users;
 DROP TABLE IF EXISTS public.authorities;
+DROP TABLE IF EXISTS public.orders;
 
 CREATE TABLE public.product (
     id serial NOT NULL PRIMARY KEY,
@@ -25,6 +26,13 @@ CREATE TABLE public.supplier (
     id serial NOT NULL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     description VARCHAR(200)
+);
+
+CREATE TABLE public.orders (
+    id serial NOT NULL PRIMARY KEY,
+    total_price INT NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    is_paid boolean
 );
 
 CREATE TABLE public.users (
