@@ -1,8 +1,6 @@
 package com.codecool.shop.dao.jdbc;
 
 import com.codecool.shop.model.Cart;
-import com.codecool.shop.user.User;
-import com.codecool.shop.user.UserRowMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -20,17 +18,18 @@ public class OrderDao {
             """, cart.getTotalPrice(), principal.getName(), false);
     }
 
-    public List<Map<String, Object>> get_all_orders(Principal principal){
+    public List<Map<String, Object>> getAll(Principal principal){
         return jdbcTemplate.queryForList("""
-                SELECT * FROM orders
-                WHERE email = ?
+                    SELECT * FROM orders
+                    WHERE email = ?
                 """, principal.getName());
     }
-    public List<User> findAll(){
-        String sql = """
-           SELECT *
-           FROM users
-           """;
-        return jdbcTemplate.query(sql,new UserRowMapper());
+
+    public void pay(Principal principal) {
+        jdbcTemplate.update("""
+            UPDATE orders
+            SET is_paid = true
+            WHERE email = ?
+        """, principal.getName());
     }
 }
