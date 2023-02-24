@@ -1,13 +1,10 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.jdbc.OrderDao;
+import com.codecool.shop.dao.implementation.OrderDao;
 import com.codecool.shop.model.Cart;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.jdbc;
+package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.model.user.User;
 import com.codecool.shop.model.user.UserRowMapper;
@@ -11,10 +11,11 @@ import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
-public class UserDao {
+public class UserDao implements com.codecool.shop.dao.UserDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public Optional<User> find(String email){
+    @Override
+    public Optional<User> findByEmail(String email){
         String sql = """
            SELECT id, name, email, password
            FROM users
@@ -24,6 +25,8 @@ public class UserDao {
                 .stream()
                 .findFirst();
     }
+
+    @Override
     public List<User> findAll(){
         String sql = """
            SELECT *
@@ -31,6 +34,8 @@ public class UserDao {
            """;
         return jdbcTemplate.query(sql,new UserRowMapper());
     }
+
+    @Override
     public void create(User user){
          System.out.println(user.getName());
         String sql = """

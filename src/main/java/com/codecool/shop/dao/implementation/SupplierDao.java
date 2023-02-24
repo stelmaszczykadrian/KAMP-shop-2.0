@@ -1,6 +1,5 @@
-package com.codecool.shop.dao.jdbc;
+package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -11,11 +10,11 @@ import java.util.List;
 
 @Repository
 @Primary
-public class SupplierDaoJdbc implements SupplierDao {
+public class SupplierDao implements com.codecool.shop.dao.SupplierDao {
 
     private DataSource dataSource;
 
-    public SupplierDaoJdbc(DataSource dataSource) {
+    public SupplierDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

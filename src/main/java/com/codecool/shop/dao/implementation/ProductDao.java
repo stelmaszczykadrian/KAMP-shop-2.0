@@ -1,6 +1,5 @@
-package com.codecool.shop.dao.jdbc;
+package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -14,12 +13,12 @@ import java.util.List;
 
 @Repository
 @Primary
-public class ProductDaoJdbc implements ProductDao {
+public class ProductDao implements com.codecool.shop.dao.ProductDao {
     private DataSource dataSource;
-    private ProductCategoryDaoJdbc productCategoryDaoJdbc;
-    private SupplierDaoJdbc supplierDaoJdbc;
+    private ProductCategoryDao productCategoryDaoJdbc;
+    private SupplierDao supplierDaoJdbc;
 
-    public ProductDaoJdbc(DataSource dataSource, ProductCategoryDaoJdbc productCategoryDaoJdbc, SupplierDaoJdbc supplierDaoJdbc) {
+    public ProductDao(DataSource dataSource, ProductCategoryDao productCategoryDaoJdbc, SupplierDao supplierDaoJdbc) {
         this.dataSource = dataSource;
         this.productCategoryDaoJdbc = productCategoryDaoJdbc;
         this.supplierDaoJdbc = supplierDaoJdbc;
