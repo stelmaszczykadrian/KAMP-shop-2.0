@@ -1,7 +1,7 @@
 package com.codecool.shop.dao.jdbc;
 
-import com.codecool.shop.user.User;
-import com.codecool.shop.user.UserRowMapper;
+import com.codecool.shop.model.user.User;
+import com.codecool.shop.model.user.UserRowMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;

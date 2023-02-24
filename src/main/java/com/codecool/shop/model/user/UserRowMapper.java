@@ -1,5 +1,6 @@
-package com.codecool.shop.user;
+package com.codecool.shop.model.user;
 
+import com.codecool.shop.model.user.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

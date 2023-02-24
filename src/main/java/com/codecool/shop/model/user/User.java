@@ -1,4 +1,4 @@
-package com.codecool.shop.user;
+package com.codecool.shop.model.user;
 
 public class User {
     public String getPassword() {
