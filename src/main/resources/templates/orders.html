@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="card rounded-3 mb-4" th:each="items : ${orders}">
+        <div class="col-md-3 col-lg-3 col-xl-3" th:each ="item : ${items}">
+            <p class="lead fw-normal mb-2" th:text="${item}">Product name</p>
+        </div>
+    </div>
+</body>
+</html>
